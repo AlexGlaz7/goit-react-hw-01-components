@@ -1,25 +1,33 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-const StatisticsSection = styled.section`
-  width: 400px;
-  background-color: lightgray;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+export const Section = styled.section`
+justify-content: center;
+  & .title {
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;}
+  & .stat-list {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    & .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    
+      width: 60px;
+      padding: 20px;
+    
+      color: #fff;
+      &:hover {
+        color: black;
+      }
+      & .percentage {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+    }
+  }
 `;
-const Title = styled.h2`
-  text-align: center;
-  background-color: #f1dddd;
-  margin: 0;
-  padding: 20px;
-`;
-
-const StatList = styled.ul`
-  display: flex;
-  list-style: none;
-  height: 50px;
-  padding: 0;
-  margin: 0;
-`;
-
-export { StatisticsSection, Title, StatList };

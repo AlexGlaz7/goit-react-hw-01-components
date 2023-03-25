@@ -1,24 +1,32 @@
 import PropTypes from 'prop-types';
-import BookList from './BookList/BookList';
-import { StatisticsSection, Title, StatList } from './Statistics.styled';
+import { Section } from './Statistics.styled';
+import { getRandomHexColor } from 'utils/randomColor';
 
-export default function Statistics({ title, stats }) {
-  return (
-    <StatisticsSection className="statistics">
-      {title && <Title>Upload stats</Title>}
+export const Statistics = ({ stats, title }) => (
+  <Section className="statistics">
+    {title && <h2 className="title">{title}</h2>}
+    <ul className="stat-list">
+      {stats.map(({ id, label, percentage }) => (
+        <li
+          key={id}
+          className="item"
+          style={{ backgroundColor: getRandomHexColor() }}
+        >
+          <span className="label">{label}</span>
+          <span className="percentage">{percentage}%</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+);
 
-      <StatList>
-        {stats.map((e, i) => {
-          return <BookList key={e.id} data={e} index={i} />;
-        })}
-      </StatList>
-    </StatisticsSection>
-  );
-}
 Statistics.propTypes = {
+  title: PropTypes.string,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-    })
-  ),
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
 };

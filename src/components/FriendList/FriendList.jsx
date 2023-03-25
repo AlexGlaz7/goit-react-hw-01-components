@@ -1,20 +1,33 @@
 import PropTypes from 'prop-types';
-import FriendsCard from './FriendsCard/FriendsCard';
-import { FriendListEl } from './FriendList.styled';
+import { FriendListItem } from '../FriendsListItem/FriendsListItem';
 
-export default function FriendList({ data }) {
-  return (
-    <FriendListEl>
-      {data.map(e => {
-        return <FriendsCard key={e.id} data={e} />;
-      })}
-    </FriendListEl>
-  );
-}
+export const FriendList = ({ friends }) => (
+  <ul className="friend-list">
+    {friends.map(
+      ({
+        avatar = 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png',
+        name,
+        isOnline,
+        id,
+      }) => (
+        <FriendListItem
+          avatar={avatar}
+          name={name}
+          isOnline={isOnline}
+          key={id}
+        />
+      )
+    )}
+  </ul>
+);
+
 FriendList.propTypes = {
-  data: PropTypes.arrayOf(
+  friends: PropTypes.arrayOf(
     PropTypes.shape({
+      avatar: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      isOnline: PropTypes.bool.isRequired,
       id: PropTypes.number.isRequired,
-    })
-  ),
+    }).isRequired
+  ).isRequired,
 };

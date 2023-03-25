@@ -1,20 +1,29 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-const Table = styled.table`
-  background-color: #ecf1f4;
-  text-align: center;
-  margin-left: 200px;
-  margin-right: 200px;
-`;
-const Head = styled.thead`
-  tr {
-    background-color: #00bed5;
+export const Table = styled.table`
+  font-size: 16px;
+  color: white;
+  border: 1px solid #e4dede;
+  border-spacing: 0.5px;
+  box-shadow: 5px 5px 10px grey;
+  & thead {
+    background-color: #5dcedb;
+    & th {
+      padding: 5px 50px;
+    }
+  }
+  & tbody {
+    color: #3b3838;
+    & td {
+      padding: 5px 50px;
+    }
+    & tr:nth-last-child(even) {
+      background-color: #e6e5e5;
+    }
+    & tr {
+      &:hover {
+        background-color: orange;
+      }
+    }
   }
 `;
-const Body = styled.tbody`
-  text-align: center;
-`;
-const Element = styled.tr`
-  background-color: ${props => (props.index % 2 ? '#EBF2F4' : 'white')};
-`;
-export { Table, Head, Body, Element };
