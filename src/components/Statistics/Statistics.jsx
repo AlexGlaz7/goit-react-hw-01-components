@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import { Section } from './Statistics.styled';
-import { getRandomHexColor } from 'utils/randomColor';
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
 
 export const Statistics = ({ stats, title }) => (
   <Section className="statistics">
